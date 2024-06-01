@@ -2,6 +2,7 @@ package com.example.sofascore_zavrsni_projekt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sofascore_zavrsni_projekt.data.local.MiniSofaDatabase
 import com.example.sofascore_zavrsni_projekt.databinding.ActivityMainBinding
 
 

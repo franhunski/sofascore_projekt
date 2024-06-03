@@ -2,8 +2,8 @@ package com.example.sofascore_zavrsni_projekt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sofascore_zavrsni_projekt.data.local.MiniSofaDatabase
 import com.example.sofascore_zavrsni_projekt.databinding.ActivityMainBinding
+import com.example.sofascore_zavrsni_projekt.ui.SportsFragment
 
 
 class MainActivity: AppCompatActivity() {
@@ -15,6 +15,12 @@ class MainActivity: AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, SportsFragment())
+                .commitNow()
+        }
 
         //val navView: BottomNavigationView = binding.navView
 
@@ -31,4 +37,5 @@ class MainActivity: AppCompatActivity() {
 
         //permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
+
 }

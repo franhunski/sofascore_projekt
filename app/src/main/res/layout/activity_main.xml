@@ -8,6 +8,7 @@
     tools:ignore="MissingClass">
 
     <RelativeLayout
+        android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/color_primary_default"
@@ -47,5 +48,13 @@
             android:paddingEnd="20dp"/>
 
     </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/relative_layout"
+        app:layout_constraintStart_toStartOf="@id/relative_layout"
+        app:layout_constraintEnd_toEndOf="@id/relative_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

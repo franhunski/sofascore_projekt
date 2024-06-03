@@ -14,6 +14,9 @@ roomCommon = "2.6.1"
 roomKtx = "2.6.1"
 retrofitVersion = "2.11.0"
 okHttpVersion = "4.12.0"
+lifecycle-livedata-ktx = "2.7.0"
+lifecycle-viewmodel-ktx = "2.7.0"
+databindingRuntime = "8.4.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -38,6 +41,9 @@ retrofit-client = { group = "com.squareup.retrofit2", name = "retrofit", version
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 okHttp-client = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttpVersion" }
 okHttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okHttpVersion" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

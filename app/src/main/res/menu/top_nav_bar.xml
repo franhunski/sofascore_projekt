@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_football"
+        android:icon="@mipmap/icon"
+        android:title="@string/title_football" />
+
+    <item
+        android:id="@+id/navigation_basketball"
+        android:icon="@mipmap/icon_basketball"
+        android:title="@string/title_basketball" />
+
+    <item
+        android:id="@+id/navigation_american_football"
+        android:icon="@mipmap/icon_american_football"
+        android:title="@string/title_american_football" />
+
+</menu>

@@ -2,8 +2,10 @@ package com.example.sofascore_zavrsni_projekt
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.sofascore_zavrsni_projekt.databinding.ActivityMainBinding
-import com.example.sofascore_zavrsni_projekt.ui.SportsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity: AppCompatActivity() {
@@ -16,26 +18,10 @@ class MainActivity: AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SportsFragment())
-                .commitNow()
-        }
+        val navView: BottomNavigationView = binding.topAppBar
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navView.setupWithNavController(navController)
 
-        //val navView: BottomNavigationView = binding.navView
-
-        //val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //val appBarConfiguration = AppBarConfiguration(
-        //    setOf(
-        //        R.id.navigation_search, R.id.navigation_cities, R.id.navigation_settings
-        //    )
-        //)
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-        //navView.setupWithNavController(navController)
-
-        //permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
 }

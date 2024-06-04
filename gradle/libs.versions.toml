@@ -17,6 +17,9 @@ okHttpVersion = "4.12.0"
 lifecycle-livedata-ktx = "2.7.0"
 lifecycle-viewmodel-ktx = "2.7.0"
 databindingRuntime = "8.4.1"
+navigation-fragment-ktx = "2.7.7"
+navigation-ui-ktx = "2.7.7"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -44,6 +47,9 @@ okHttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

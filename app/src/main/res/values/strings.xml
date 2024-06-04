@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Sofascore_zavrsni_projekt</string>
+    <string name="title_football">Football</string>
+    <string name="title_basketball">Basketball</string>
+    <string name="title_american_football">Am. Football</string>
+    <string name="no_events">There are no events today!</string>
 </resources>

@@ -49,12 +49,29 @@
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/top_app_bar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_primary_default"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
         app:layout_constraintTop_toBottomOf="@id/relative_layout"
-        app:layout_constraintStart_toStartOf="@id/relative_layout"
-        app:layout_constraintEnd_toEndOf="@id/relative_layout"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/top_nav_bar" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment_activity_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintTop_toBottomOf="@id/top_app_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:navGraph="@navigation/sports_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

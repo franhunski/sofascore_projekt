@@ -1,6 +1,7 @@
 package com.example.sofascore_zavrsni_projekt.ui
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,13 +18,14 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             value = when (val result = miniSofaRepository.getAllSports()) {
                 is Result.Success -> {
-                    result.data.sports
+                    result.data
                 }
 
                 is Result.Error -> {
                     emptyList()
                 }
             }
+            Log.d("sportovi", "sports=${value}")
         }
     }
     val sports: LiveData<List<Sport>> = _sports

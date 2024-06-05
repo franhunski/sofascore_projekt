@@ -1,19 +1,6 @@
-package com.example.sofascore_zavrsni_projekt.data.local.entity
+package com.example.sofascore_zavrsni_projekt.data.miniSofa_models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
-data class Sport(
-    @PrimaryKey(autoGenerate = true)
-    val externalId: Int = 0,
-    val name: String,
-    val slug: String
-)
-
-@Entity
 data class Event(
-    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val slug: String,
     val tournament: Tournament,
@@ -27,9 +14,7 @@ data class Event(
     val round: Int
 )
 
-@Entity
 data class Tournament(
-    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
     val slug: String,
@@ -37,24 +22,24 @@ data class Tournament(
     val country: Country
 )
 
-@Entity
+data class Sport(
+    val id: Int,
+    val name: String,
+    val slug: String
+)
+
+data class Country(
+    val id: Int,
+    val name: String
+)
+
 data class Team(
-    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
     val country: Country
 )
 
-@Entity
-data class Country(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String
-)
-
-@Entity
 data class Score(
-    @PrimaryKey
     val total: Int,
     val period1: Int,
     val period2: Int,

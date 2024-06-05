@@ -1,13 +1,22 @@
 package com.example.sofascore_zavrsni_projekt.ui.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.sofascore_zavrsni_projekt.R
+import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Event
+import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Tournament
 import com.example.sofascore_zavrsni_projekt.databinding.EventItemBinding
 import com.example.sofascore_zavrsni_projekt.databinding.HeaderItemBinding
 import com.example.sofascore_zavrsni_projekt.databinding.HeaderItemNoEventsBinding
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
 
@@ -43,6 +52,7 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (val item = items[position]) {
             is EventItem.EventInfoItem -> (holder as EventInfoViewHolder).bind(item)
@@ -67,22 +77,74 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
         items = newItems
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearData() {
+        items = emptyList()
+        notifyDataSetChanged()
+    }
+
     class EventInfoViewHolder(private val eventItemBinding: EventItemBinding) :
         ViewHolder(eventItemBinding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
+        @SuppressLint("SetTextI18n")
         fun bind(eventInfoItem: EventItem.EventInfoItem) {
-
+            val eventInfo = eventInfoItem.eventInfo
+            val formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+            val outputFormatter = DateTimeFormatter.ofPattern("HH:mm")
+            eventItemBinding.run {
+                homeTeamName.text = eventInfo.homeTeam.name
+                awayTeamName.text = eventInfo.awayTeam.name
+                homeTeamIcon.setImageBitmap(eventInfoItem.listOfLogos[0])
+                awayTeamIcon.setImageBitmap(eventInfoItem.listOfLogos[1])
+                val formattedTime = LocalDateTime.parse(eventInfo.startDate, formatter)
+                    .format(outputFormatter)
+                eventTime.text = formattedTime
+                when (eventInfo.status) {
+                    "finished" -> {
+                        eventStatus.text = "FT"
+                        homeTeamScore.text = eventInfo.homeScore.total.toString()
+                        awayTeamScore.text = eventInfo.awayScore.total.toString()
+                    }
+                    "notstarted" -> {
+                        eventStatus.text = "-"
+                        homeTeamScore.text = ""
+                        awayTeamScore.text = ""
+                        homeTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                        awayTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                    }
+                    else -> {
+                        eventStatus.text = eventInfo.status
+                    }
+                }
+                if (eventInfo.winnerCode == "home") {
+                    homeTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_1))
+                    homeTeamScore.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_1))
+                    awayTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                    awayTeamScore.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                } else if (eventInfo.winnerCode == "away") {
+                    awayTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_1))
+                    awayTeamScore.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_1))
+                    homeTeamName.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                    homeTeamScore.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
+                }
+            }
         }
 
     }
     class HeaderItemViewHolder(private val binding: HeaderItemBinding) : ViewHolder(binding.root) {
         fun bind(header: EventItem.HeaderItem) {
-
+            val eventInfo = header.tournament
+            binding.run {
+                tournamentCountry.text = eventInfo.country.name
+                tournamentName.text = eventInfo.name
+                tournamentIcon.setImageBitmap(header.tournamentLogo)
+            }
         }
     }
 
     class HeaderItemNoEventsViewHolder(private val binding: HeaderItemNoEventsBinding) : ViewHolder(binding.root) {
         fun bind(header: EventItem.HeaderNoEventsItem) {
-
+            binding.noEventsText.text = header.title
         }
     }
 
@@ -100,9 +162,9 @@ class EventInfoDiffCallback(
         val oldItem = oldItems[oldItemPosition]
         val newItem = newItems[newItemPosition]
         return if (oldItem is EventItem.HeaderItem && newItem is EventItem.HeaderItem) {
-            oldItem.title == newItem.title
+            oldItem.tournament.id == newItem.tournament.id
         } else if (oldItem is EventItem.EventInfoItem && newItem is EventItem.EventInfoItem) {
-            oldItem.weatherInfo.cityName == newItem.weatherInfo.cityName
+            oldItem.eventInfo.id == newItem.eventInfo.id
         } else if (oldItem is EventItem.HeaderNoEventsItem && newItem is EventItem.HeaderNoEventsItem) {
             oldItem.title == newItem.title
         }else false
@@ -117,11 +179,11 @@ class EventInfoDiffCallback(
 
 sealed class EventItem {
 
-    data class EventInfoItem(val weatherInfo: WeatherInfo) : EventItem()
+    data class EventInfoItem(val eventInfo: Event, val listOfLogos: MutableList<Bitmap?>) : EventItem()
 
-    data class HeaderItem(val title: String) : EventItem()
+    data class HeaderItem(val tournament: Tournament, val tournamentLogo: Bitmap) : EventItem()
 
-    data class HeaderNoEventsItem(val title: String) : EventItem()
+    data class HeaderNoEventsItem(var title: String) : EventItem()
 
 
 }

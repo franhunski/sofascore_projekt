@@ -4,4 +4,7 @@
     <string name="title_basketball">Basketball</string>
     <string name="title_american_football">Am. Football</string>
     <string name="no_events">There are no events today!</string>
+    <string name="leagues_headline">Leagues</string>
+    <string name="title_leagues_page">Leagues page</string>
+    <string name="title_main">Main</string>
 </resources>

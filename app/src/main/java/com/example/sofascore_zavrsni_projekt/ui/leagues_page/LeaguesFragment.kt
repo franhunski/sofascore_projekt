@@ -1,10 +1,15 @@
 package com.example.sofascore_zavrsni_projekt.ui.leagues_page
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.sofascore_zavrsni_projekt.MainActivity
+import com.example.sofascore_zavrsni_projekt.R
 import com.example.sofascore_zavrsni_projekt.databinding.LeaguesFragmentBinding
 
 class LeaguesFragment: Fragment() {
@@ -20,7 +25,8 @@ class LeaguesFragment: Fragment() {
         val root: View = binding.root
 
         binding.backIcon.setOnClickListener {
-
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         }
         return root
     }
@@ -29,4 +35,5 @@ class LeaguesFragment: Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

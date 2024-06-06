@@ -2,63 +2,105 @@ package com.example.sofascore_zavrsni_projekt.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.ForeignKey
+import androidx.room.Index
 
-@Entity
-data class Sport(
-    @PrimaryKey(autoGenerate = true)
-    val externalId: Int = 0,
-    val name: String,
-    val slug: String
-)
-
-@Entity
-data class Event(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val slug: String,
-    val tournament: Tournament,
-    val homeTeam: Team,
-    val awayTeam: Team,
-    val status: String,
-    val startDate: String,
-    val homeScore: Score,
-    val awayScore: Score,
-    val winnerCode: String,
-    val round: Int
-)
-
-@Entity
-data class Tournament(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String,
-    val slug: String,
-    val sport: Sport,
-    val country: Country
-)
-
-@Entity
-data class Team(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String,
-    val country: Country
-)
-
-@Entity
+@Entity(indices = [Index(value = ["externalId"], unique = true)])
 data class Country(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
-    val name: String
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val name: String,
+    val externalId: Int
 )
 
-@Entity
-data class Score(
-    @PrimaryKey
-    val total: Int,
-    val period1: Int,
-    val period2: Int,
-    val period3: Int,
-    val period4: Int,
-    val overtime: Int
+@Entity(foreignKeys = [
+    ForeignKey(
+        entity = Team::class,
+        parentColumns = ["externalId"],
+        childColumns = ["homeTeamId"],
+        onDelete = ForeignKey.CASCADE),
+    ForeignKey(
+        entity = Team::class,
+        parentColumns = ["externalId"],
+        childColumns = ["awayTeamId"],
+        onDelete = ForeignKey.CASCADE),
+    ForeignKey(
+        entity = Tournament::class,
+        parentColumns = ["externalId"],
+        childColumns = ["tournamentId"],
+        onDelete = ForeignKey.CASCADE)
+    ], indices = [Index(value = ["externalId"], unique = true)])
+data class Event(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val externalId: Int,
+    val slug: String,
+    val homeTeamId: Int,
+    val awayTeamId: Int,
+    val homeScore: Int,
+    val awayScore: Int,
+    val startDate: String,
+    val tournamentId: Int,
+    val round: Int,
+    val winnerCode: String?,
+    val status: String
+)
+
+@Entity(foreignKeys = [
+    ForeignKey(
+        entity = Country::class,
+        parentColumns = ["externalId"],
+        childColumns = ["countryId"],
+        onDelete = ForeignKey.CASCADE)
+    ], indices = [Index(value = ["externalId"], unique = true)])
+data class Player(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val name: String,
+    val slug: String,
+    val position: String,
+    val externalId: Int,
+    val countryId: Int
+)
+
+@Entity(indices = [Index(value = ["externalId"], unique = true)])
+data class Sport(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val name: String,
+    val slug: String,
+    val externalId: Int
+)
+
+@Entity(foreignKeys = [
+    ForeignKey(
+        entity = Country::class,
+        parentColumns = ["externalId"],
+        childColumns = ["countryId"],
+        onDelete = ForeignKey.CASCADE)
+    ], indices = [Index(value = ["externalId"], unique = true)])
+data class Team(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val name: String,
+    val managerName: String,
+    val venue: String,
+    val externalId: Int,
+    val countryId: Int
+)
+
+@Entity(foreignKeys = [
+    ForeignKey(
+        entity = Sport::class,
+        parentColumns = ["externalId"],
+        childColumns = ["sportId"],
+        onDelete = ForeignKey.CASCADE),
+    ForeignKey(
+        entity = Country::class,
+        parentColumns = ["externalId"],
+        childColumns = ["countryId"],
+        onDelete = ForeignKey.CASCADE)
+    ], indices = [Index(value = ["externalId"], unique = true)])
+data class Tournament(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+    val name: String,
+    val slug: String,
+    val externalId: Int,
+    val sportId: Int,
+    val countryId: Int
 )

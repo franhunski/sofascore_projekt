@@ -5,8 +5,12 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Country
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Sport
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Event
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Team
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Tournament
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MiniSofaDao {
@@ -14,12 +18,21 @@ interface MiniSofaDao {
     @Query("SELECT * FROM Sport")
     fun getAllSports() : LiveData<List<Sport>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSport(sport: Sport)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertEvent(event: Event)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertTeam(team: Team)
 
-    @Query("SELECT * FROM Event")
-    fun getAllEventsForSportAndDate(): LiveData<List<Event>>
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertTournament(tournament: Tournament)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertEventInfoList(event: Event)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertCountry(country: Country)
+
+    @Query("SELECT * FROM Event WHERE slug = :slug AND DATE(startDate) = :date")
+    fun getAllEventsForSportAndDate(slug: String, date: String): LiveData<List<Event>>
 }

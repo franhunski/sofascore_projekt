@@ -23,10 +23,4 @@
         android:label="@string/title_american_football"
         tools:layout="@layout/american_football_fragment" />
 
-    <fragment
-        android:id="@+id/navigation_leagues_page"
-        android:name="com.example.sofascore_zavrsni_projekt.ui.leagues_page.LeaguesFragment"
-        android:label="@string/title_leagues_page"
-        tools:layout="@layout/leagues_fragment"/>
-
 </navigation>

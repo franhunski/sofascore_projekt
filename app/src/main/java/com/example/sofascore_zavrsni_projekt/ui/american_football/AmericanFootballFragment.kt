@@ -59,6 +59,10 @@ class AmericanFootballFragment: Fragment() {
         val calendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val string = sdf.format(calendar.time)
+        val loadingCircle = binding.loadingCircle
+        sportViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            loadingCircle.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
         sportViewModel.fetchEventsForSportAndDate(fragmentName, string)
         sportViewModel.eventInfo.observe(viewLifecycleOwner) {
             eventAdapter.updateItems(it)

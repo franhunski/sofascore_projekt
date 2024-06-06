@@ -39,7 +39,7 @@ android {
         viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion =  libs.versions.composeCompilerVersion.get()
     }
 }
 
@@ -55,8 +55,9 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.room.common)
-    implementation(libs.androidx.room.ktx)
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.gson)
     implementation(libs.okHttp.client)
@@ -73,5 +74,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
 
 }

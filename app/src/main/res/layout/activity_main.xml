@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:ignore="MissingClass">
 
+
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
 
 
         <ImageView
-            android:id="@+id/end_image_1"
+            android:id="@+id/settings_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -38,10 +39,10 @@
             android:paddingEnd="20dp"/>
 
         <ImageView
-            android:id="@+id/end_image_2"
+            android:id="@+id/leagues_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toStartOf="@id/end_image_1"
+            android:layout_toStartOf="@id/settings_icon"
             android:layout_centerVertical="true"
             android:src="@mipmap/icon_2"
             tools:ignore="ContentDescription,RtlSymmetry"
@@ -61,13 +62,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/top_nav_bar"/>
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/nav_host_fragment_activity_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintTop_toBottomOf="@id/relative_layout"
+        app:layout_constraintTop_toBottomOf="@id/top_app_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

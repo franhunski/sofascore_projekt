@@ -77,11 +77,6 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
         items = newItems
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun clearData() {
-        items = emptyList()
-        notifyDataSetChanged()
-    }
 
     class EventInfoViewHolder(private val eventItemBinding: EventItemBinding) :
         ViewHolder(eventItemBinding.root) {

@@ -2,37 +2,31 @@ package com.example.sofascore_zavrsni_projekt.data.repository
 
 import android.app.Application
 import android.util.Log
+import androidx.room.Room
 import com.example.sofascore_zavrsni_projekt.data.local.MiniSofaDatabase
-import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Event
-import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Sport
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Country
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Event
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Sport
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Team
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Tournament
 import com.example.sofascore_zavrsni_projekt.data.remote.Network
 import com.example.sofascore_zavrsni_projekt.util.safeResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.example.sofascore_zavrsni_projekt.data.remote.Result
+import kotlinx.coroutines.async
 
 class MiniSofaRepository(application: Application) {
 
     private val api = Network.getInstance()
-    //private val miniSofaDao = MiniSofaDatabase.getInstance(application).miniSofaDao()
 
-    suspend fun getAllSports(): Result<List<Sport>> =
-        withContext(Dispatchers.IO) {
-            Log.d("SportRepository", "Fetching sports data")
-            val response = safeResponse {
-                api.getSports()
-            }
-            when (response) {
-                is Result.Success -> {
-                    Log.d("SportRepository", "Response received: ${response.data}")
-                    Result.Success(response.data)
-                }
-                is Result.Error -> {
-                    Log.e("SportRepository", "Error fetching sports data: ${response.error}")
-                    response
-                }
-            }
-        }
+    //private val miniSofaDao = MiniSofaDatabase.getInstance(application).miniSofaDao()
+    //private val db = MiniSofaDatabase.getInstance(application)
+    private val db = Room.databaseBuilder(
+        application, MiniSofaDatabase::class.java, "database"
+    ).build()
+
+    private val miniSofaDao = db.miniSofaDao()
 
     suspend fun getAllEventsForSportAndDate(slug: String, date: String)  =
         withContext(Dispatchers.IO) {
@@ -43,12 +37,75 @@ class MiniSofaRepository(application: Application) {
             when (response) {
                 is Result.Success -> {
                     Log.d("MiniSofaRepository", "Response received: ${response.data}")
+
+                    db.runInTransaction {
+                        for (event in response.data) {
+                            val events = Event(
+                                externalId = event.id,
+                                slug = event.slug,
+                                homeTeamId = event.homeTeam.id,
+                                awayTeamId = event.awayTeam.id,
+                                awayScore = event.awayScore.total,
+                                homeScore = event.homeScore.total,
+                                round = event.round,
+                                startDate = event.startDate,
+                                status = event.status,
+                                tournamentId = event.tournament.id,
+                                winnerCode = event.winnerCode
+                            )
+                            val tournament = Tournament(
+                                name = event.tournament.name,
+                                slug = event.tournament.slug,
+                                countryId = event.tournament.country.id,
+                                externalId = event.tournament.id,
+                                sportId = 1
+                            )
+                            val tournamentCountry = Country(
+                                name = event.tournament.country.name,
+                                externalId = event.tournament.country.id
+                            )
+                            val homeTeam = Team(
+                                name = event.homeTeam.name,
+                                externalId = event.homeTeam.id,
+                                countryId = event.homeTeam.country.id,
+                                managerName = "Fran",
+                                venue = "Maksimir"
+                            )
+                            val awayTeam = Team(
+                                name = event.awayTeam.name,
+                                externalId = event.awayTeam.id,
+                                countryId = event.awayTeam.country.id,
+                                managerName = "Fran",
+                                venue = "Maksimir"
+                            )
+                            val homeTeamCountry = Country(
+                                name = event.homeTeam.country.name,
+                                externalId = event.homeTeam.country.id
+                            )
+                            val awayTeamCountry = Country(
+                                name = event.awayTeam.country.name,
+                                externalId = event.awayTeam.country.id
+                            )
+                            val save = async {
+                                miniSofaDao.insertCountry(tournamentCountry)
+                                miniSofaDao.insertCountry(homeTeamCountry)
+                                miniSofaDao.insertCountry(awayTeamCountry)
+                                miniSofaDao.insertSport(Sport(name = "Football", slug = "football", externalId = 1))
+                                miniSofaDao.insertTournament(tournament)
+                                miniSofaDao.insertTeam(homeTeam)
+                                miniSofaDao.insertTeam(awayTeam)
+                                miniSofaDao.insertEventInfoList(events)
+                            }
+
+                        }
+                    }
                     Result.Success(response.data)
                 }
                 is Result.Error -> {
                     Log.e("MiniSofaRepository", "Error fetching events data: ${response.error}")
                     response
                 }
+
             }
         }
 

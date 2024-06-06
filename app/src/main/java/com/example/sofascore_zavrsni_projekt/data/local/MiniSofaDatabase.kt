@@ -5,14 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.sofascore_zavrsni_projekt.data.local.dao.MiniSofaDao
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Country
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Event
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Player
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Sport
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Team
+import com.example.sofascore_zavrsni_projekt.data.local.entity.Tournament
 
-@Database(entities = [Sport::class], version = 1)
+@Database(entities = [Country::class, Event::class, Player::class, Sport::class, Team::class, Tournament::class], version = 1)
 abstract class MiniSofaDatabase : RoomDatabase() {
     abstract fun miniSofaDao(): MiniSofaDao
 
     companion object {
-        private const val DATABASE_NAME = "minisofa_app.db"
+        private const val DATABASE_NAME = "miniSofa_app.db"
 
         @Volatile
         private var INSTANCE: MiniSofaDatabase? = null

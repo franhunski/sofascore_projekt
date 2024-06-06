@@ -35,9 +35,11 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
     fun fetchEventsForSportAndDate(slug: String, date: String) {
         viewModelScope.launch {
             _isLoading.value = true
+            var success: Boolean = false
             val eventItems : MutableMap<EventItem, MutableList<EventItem>> = mutableMapOf()
             _eventInfo.value = when (val result = miniSofaRepository.getAllEventsForSportAndDate(slug, date)) {
                 is Result.Success -> {
+                    success = true
                     val eventItemsList = mutableListOf<EventItem>()
                     val keys = mutableListOf<Int>()
                     val list = result.data
@@ -101,7 +103,10 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
                 }
             }
             Log.d("eventovi", "sports=${_eventInfo.value}")
-            _isLoading.value = false
+            if (success) {
+                _isLoading.value = false
+            }
+
         }
 
     }

@@ -7,4 +7,22 @@
     <string name="leagues_headline">Leagues</string>
     <string name="title_leagues_page">Leagues page</string>
     <string name="title_main">Main</string>
+    <string name="title_settings_page">Settings</string>
+    <string name="language_text">Language</string>
+    <string name="text_english">English</string>
+    <string name="theme_text">Theme</string>
+    <string name="light_theme_text">Light</string>
+    <string name="dark_theme_text">Dark</string>
+    <string name="date_format_text">Date Format</string>
+    <string name="date_format_1">DD / MM / YYYY</string>
+    <string name="date_format_2">MM / DD / YYYY</string>
+    <string name="about_text">About</string>
+    <string name="academy_name_text">Sofascore Android Academy</string>
+    <string name="academy_year_text">Class 2024</string>
+    <string name="app_name_text">App name</string>
+    <string name="app_name_settings">Mini Sofascore App</string>
+    <string name="api_credit_text">API Credit</string>
+    <string name="api_credit">Sofascore</string>
+    <string name="developer_text">Developer</string>
+    <string name="developer_name">Fran Hunski</string>
 </resources>

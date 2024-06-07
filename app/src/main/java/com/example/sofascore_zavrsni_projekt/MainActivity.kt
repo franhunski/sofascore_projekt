@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.sofascore_zavrsni_projekt.databinding.ActivityMainBinding
 import com.example.sofascore_zavrsni_projekt.ui.leagues_page.LeaguesActivity
+import com.example.sofascore_zavrsni_projekt.ui.settings.SettingsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -30,10 +31,10 @@ class MainActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-        //binding.settingsIcon.setOnClickListener {
-        //    val intent = Intent(this, SettingsActivity::class.java)
-        //    startActivity(intent)
-        //}
+        binding.settingsIcon.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

@@ -22,7 +22,6 @@
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:lineHeight="16sp"
             android:textColor="@color/on_surface_on_surface_lv_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -34,7 +33,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:textSize="12sp"
-            android:lineHeight="16sp"
             android:textStyle="bold"
             android:textColor="@color/on_surface_on_surface_lv_2"
             app:layout_constraintEnd_toEndOf="parent"

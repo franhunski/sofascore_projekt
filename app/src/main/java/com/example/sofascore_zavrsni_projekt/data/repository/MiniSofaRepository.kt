@@ -20,13 +20,10 @@ class MiniSofaRepository(application: Application) {
 
     private val api = Network.getInstance()
 
-    //private val miniSofaDao = MiniSofaDatabase.getInstance(application).miniSofaDao()
-    //private val db = MiniSofaDatabase.getInstance(application)
-    private val db = Room.databaseBuilder(
-        application, MiniSofaDatabase::class.java, "database"
-    ).build()
+    private val miniSofaDao = MiniSofaDatabase.getInstance(application).miniSofaDao()
+    private val db = MiniSofaDatabase.getInstance(application)
 
-    private val miniSofaDao = db.miniSofaDao()
+
 
     suspend fun getAllEventsForSportAndDate(slug: String, date: String)  =
         withContext(Dispatchers.IO) {
@@ -68,15 +65,15 @@ class MiniSofaRepository(application: Application) {
                                 name = event.homeTeam.name,
                                 externalId = event.homeTeam.id,
                                 countryId = event.homeTeam.country.id,
-                                managerName = "Fran",
-                                venue = "Maksimir"
+                                managerName = "",
+                                venue = ""
                             )
                             val awayTeam = Team(
                                 name = event.awayTeam.name,
                                 externalId = event.awayTeam.id,
                                 countryId = event.awayTeam.country.id,
-                                managerName = "Fran",
-                                venue = "Maksimir"
+                                managerName = "",
+                                venue = ""
                             )
                             val homeTeamCountry = Country(
                                 name = event.homeTeam.country.name,
@@ -140,6 +137,95 @@ class MiniSofaRepository(application: Application) {
                 }
                 is Result.Error -> {
                     Log.e("MiniSofaRepository tournament logo", "Error fetching events data: ${response.error}")
+                    response
+                }
+            }
+        }
+
+    suspend fun getEventWithId(id: Int)  =
+        withContext(Dispatchers.IO) {
+            Log.d("MiniSofaRepository event-id", "Fetching event data")
+            val response = safeResponse {
+                api.getEventWithId(id.toString())
+            }
+            when (response) {
+                is Result.Success -> {
+                    Log.d("MiniSofaRepository event-id", "Response received: ${response.data}")
+                    Result.Success(response.data)
+                }
+                is Result.Error -> {
+                    Log.e("MiniSofaRepository event-id", "Error fetching events data: ${response.error}")
+                    response
+                }
+            }
+        }
+    suspend fun getEventIncidents(id: Int)  =
+        withContext(Dispatchers.IO) {
+            Log.d("MiniSofaRepository event-incident", "Fetching event incidents data")
+            val response = safeResponse {
+                api.getEventIncidents(id.toString())
+            }
+            when (response) {
+                is Result.Success -> {
+                    Log.d("MiniSofaRepository event-incidents", "Response received: ${response.data}")
+                    Result.Success(response.data)
+                }
+                is Result.Error -> {
+                    Log.e("MiniSofaRepository event-incidents", "Error fetching events data: ${response.error}")
+                    response
+                }
+            }
+        }
+
+    suspend fun getTournamentDetails(id: Int)  =
+        withContext(Dispatchers.IO) {
+            Log.d("MiniSofaRepository tournament-details", "Fetching tournament details data")
+            val response = safeResponse {
+                api.getTournamentDetails(id.toString())
+            }
+            when (response) {
+                is Result.Success -> {
+                    Log.d("MiniSofaRepository tournament-details", "Response received: ${response.data}")
+                    Result.Success(response.data)
+                }
+                is Result.Error -> {
+                    Log.e("MiniSofaRepository tournament-details", "Error fetching tournament-details: ${response.error}")
+                    response
+                }
+            }
+        }
+
+    suspend fun getTournamentEvents(id: Int, span: String, page: Int)  =
+        withContext(Dispatchers.IO) {
+            Log.d("MiniSofaRepository tournament-events", "Fetching tournament events data")
+            val response = safeResponse {
+                api.getTournamentEvents(id.toString(), span, page.toString())
+            }
+            when (response) {
+                is Result.Success -> {
+                    Log.d("MiniSofaRepository tournament-events", "Response received: ${response.data}")
+                    Result.Success(response.data)
+                }
+                is Result.Error -> {
+                    Log.e("MiniSofaRepository tournament-events", "Error fetching tournament-events: ${response.error}")
+                    response
+                }
+            }
+        }
+
+    suspend fun getTournamentStandings(id: Int)  =
+        withContext(Dispatchers.IO) {
+            Log.d("MiniSofaRepository tournament-standings", "Fetching tournament standings data")
+            val response = safeResponse {
+                api.getTournamentStandings(id.toString())
+            }
+            when (response) {
+                is Result.Success -> {
+                    Log.d("MiniSofaRepository tournament-standings", "Response received: ${response.data}")
+                    Result.Success(response.data)
+                }
+                is Result.Error -> {
+                    Log.e("MiniSofaRepository tournament-standings", "Error fetching tournament-standings: ${response.error}")
                     response
                 }
             }

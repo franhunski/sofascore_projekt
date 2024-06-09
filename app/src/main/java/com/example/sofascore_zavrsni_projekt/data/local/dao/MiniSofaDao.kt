@@ -10,7 +10,6 @@ import com.example.sofascore_zavrsni_projekt.data.local.entity.Sport
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Event
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Team
 import com.example.sofascore_zavrsni_projekt.data.local.entity.Tournament
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MiniSofaDao {

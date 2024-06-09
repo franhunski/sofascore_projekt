@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/surface_surface_1">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/frame_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/circle_background"/>
+
+        <TextView
+            android:id="@+id/text_position"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:textSize="14sp"
+            android:textColor="@color/on_surface_on_surface_lv_1"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/text_team"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/frame_layout"
+        app:layout_constraintEnd_toStartOf="@id/text_played_football" />
+
+    <TextView
+        android:id="@+id/text_played_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_team"
+        app:layout_constraintEnd_toStartOf="@id/text_wins_football" />
+
+    <TextView
+        android:id="@+id/text_wins_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_played_football"
+        app:layout_constraintEnd_toStartOf="@id/text_draws_football" />
+
+    <TextView
+        android:id="@+id/text_draws_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_wins_football"
+        app:layout_constraintEnd_toStartOf="@id/text_loses_football" />
+
+    <TextView
+        android:id="@+id/text_loses_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_draws_football"
+        app:layout_constraintEnd_toStartOf="@id/text_goals_football" />
+
+    <TextView
+        android:id="@+id/text_goals_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_loses_football"
+        app:layout_constraintEnd_toStartOf="@id/text_points_football" />
+
+    <TextView
+        android:id="@+id/text_points_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_goals_football"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/text_played_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_team"
+        app:layout_constraintEnd_toStartOf="@id/text_wins_basketball" />
+
+    <TextView
+        android:id="@+id/text_wins_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_played_basketball"
+        app:layout_constraintEnd_toStartOf="@id/text_loses_basketball" />
+
+    <TextView
+        android:id="@+id/text_loses_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_wins_basketball"
+        app:layout_constraintEnd_toStartOf="@id/text_diff_basketball" />
+
+    <TextView
+        android:id="@+id/text_diff_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_loses_basketball"
+        app:layout_constraintEnd_toStartOf="@id/text_str_basketball" />
+
+    <TextView
+        android:id="@+id/text_str_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_diff_basketball" />
+
+    <TextView
+        android:id="@+id/text_gb_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_str_basketball"
+        />
+
+    <TextView
+        android:id="@+id/text_pct_basketball"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_gb_basketball"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/text_played_am_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_team"
+        app:layout_constraintEnd_toStartOf="@id/text_wins_am_football" />
+
+    <TextView
+        android:id="@+id/text_wins_am_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_played_am_football"
+        app:layout_constraintEnd_toStartOf="@id/text_draws_am_football" />
+
+    <TextView
+        android:id="@+id/text_draws_am_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_wins_am_football"
+        app:layout_constraintEnd_toStartOf="@id/text_loses_am_football" />
+
+    <TextView
+        android:id="@+id/text_loses_am_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_draws_am_football"
+        app:layout_constraintEnd_toStartOf="@id/text_pct_am_football" />
+
+    <TextView
+        android:id="@+id/text_pct_am_football"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/on_surface_on_surface_lv_1"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_loses_am_football"
+       app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

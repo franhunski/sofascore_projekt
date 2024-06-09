@@ -85,30 +85,30 @@ class BasketballFragment: Fragment() {
         binding.textDate.text = "Today"
 
         calendar.add(Calendar.DAY_OF_YEAR, -1)
-        toolbarBinding.dateLeft1.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateLeft1.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateLeft1 = date.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, -1)
-        toolbarBinding.dateLeft2.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateLeft2.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateLeft2 = date.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, -1)
-        toolbarBinding.dateLeft3.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateLeft3.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateLeft3 = date.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, 3)
         toolbarBinding.dateToday.text = "TODAY\n" + sdfToday.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, 1)
-        toolbarBinding.dateRight1.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateRight1.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateRight1 = date.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, 1)
-        toolbarBinding.dateRight2.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateRight2.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateRight2 = date.format(calendar.time)
 
         calendar.add(Calendar.DAY_OF_YEAR, 1)
-        toolbarBinding.dateRight3.text = sdf.format(calendar.time).toUpperCase(Locale.ENGLISH)
+        toolbarBinding.dateRight3.text = sdf.format(calendar.time).uppercase(Locale.ENGLISH)
         val dateRight3 = date.format(calendar.time)
 
 

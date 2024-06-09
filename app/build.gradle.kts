@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
+    implementation(libs.androidx.paging.runtime.ktx)
     ksp(libs.room.compiler)
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.gson)

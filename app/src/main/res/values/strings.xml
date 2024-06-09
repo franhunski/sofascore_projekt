@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sofascore_zavrsni_projekt</string>
+    <string name="app_name">Mini Sofascore</string>
     <string name="title_football">Football</string>
     <string name="title_basketball">Basketball</string>
     <string name="title_american_football">Am. Football</string>
@@ -25,4 +25,5 @@
     <string name="api_credit">Sofascore</string>
     <string name="developer_text">Developer</string>
     <string name="developer_name">Fran Hunski</string>
+    <string name="tournament_details">View Tournament Details</string>
 </resources>

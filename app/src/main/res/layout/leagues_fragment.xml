@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:lineHeight="28sp"
             android:textColor="@color/surface_surface_1"
             android:text="@string/leagues_headline"
             app:layout_constraintTop_toTopOf="@id/inner_layout"

@@ -17,7 +17,7 @@ abstract class MiniSofaDatabase : RoomDatabase() {
     abstract fun miniSofaDao(): MiniSofaDao
 
     companion object {
-        private const val DATABASE_NAME = "miniSofa_app.db"
+        private const val DATABASE_NAME = "miniSofa_App.db"
 
         @Volatile
         private var INSTANCE: MiniSofaDatabase? = null

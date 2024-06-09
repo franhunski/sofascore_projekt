@@ -26,24 +26,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.leagues_page.LeaguesActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Sofascore_zavrsni_projekt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Sofascore_zavrsni_projekt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ui.leagues_page.LeaguesActivity" />
+        <activity android:name=".ui.settings.SettingsActivity" />
+        <activity android:name=".ui.event_details.EventDetailsActivity" />
+        <activity android:name=".ui.tournament_details.TournamentDetailsActivity" />
     </application>
 
 </manifest>

@@ -1,11 +1,13 @@
 package com.example.sofascore_zavrsni_projekt.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.compose.ui.graphics.Color
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -15,6 +17,8 @@ import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Tournament
 import com.example.sofascore_zavrsni_projekt.databinding.EventItemBinding
 import com.example.sofascore_zavrsni_projekt.databinding.HeaderItemBinding
 import com.example.sofascore_zavrsni_projekt.databinding.HeaderItemNoEventsBinding
+import com.example.sofascore_zavrsni_projekt.ui.event_details.EventDetailsActivity
+import com.example.sofascore_zavrsni_projekt.ui.tournament_details.TournamentDetailsActivity
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -78,8 +82,7 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
 
-    class EventInfoViewHolder(private val eventItemBinding: EventItemBinding) :
-        ViewHolder(eventItemBinding.root) {
+    class EventInfoViewHolder(private val eventItemBinding: EventItemBinding) : ViewHolder(eventItemBinding.root) {
         @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n")
         fun bind(eventInfoItem: EventItem.EventInfoItem) {
@@ -123,6 +126,22 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
                     homeTeamScore.setTextColor(itemView.context.getColor(R.color.on_surface_on_surface_lv_2))
                 }
             }
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, EventDetailsActivity::class.java).apply {
+                    putExtra("eventId", eventInfoItem.eventInfo.id.toString() + " " + eventInfoItem.eventInfo.tournament.sport.slug + " " + eventInfoItem.eventInfo.tournament.id.toString())
+                }
+                context.startActivity(intent)
+                showPressedEffect()
+            }
+        }
+        private fun showPressedEffect() {
+            itemView.setBackgroundColor(Color.LightGray.hashCode())
+            itemView.elevation = 8f
+            itemView.postDelayed({
+                itemView.setBackgroundColor(Color.White.hashCode())
+                itemView.elevation = 0f
+            }, 200)
         }
 
     }
@@ -134,7 +153,24 @@ class EventInfoAdapter : RecyclerView.Adapter<ViewHolder>() {
                 tournamentName.text = eventInfo.name
                 tournamentIcon.setImageBitmap(header.tournamentLogo)
             }
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, TournamentDetailsActivity::class.java)
+                intent.putExtra("tournamentId", header.tournament.id.toString())
+                context.startActivity(intent)
+                showPressedEffect()
+            }
         }
+        private fun showPressedEffect() {
+            itemView.setBackgroundColor(Color.LightGray.hashCode())
+            itemView.elevation = 8f
+            itemView.postDelayed({
+                itemView.setBackgroundColor(Color.White.hashCode())
+                itemView.elevation = 0f
+            }, 200)
+        }
+
+
     }
 
     class HeaderItemNoEventsViewHolder(private val binding: HeaderItemNoEventsBinding) : ViewHolder(binding.root) {

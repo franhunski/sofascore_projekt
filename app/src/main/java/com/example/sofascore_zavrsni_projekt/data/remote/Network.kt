@@ -1,5 +1,6 @@
 package com.example.sofascore_zavrsni_projekt.data.remote
 
+import com.example.sofascore_zavrsni_projekt.data.miniSofa_models.Incident
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,9 +22,13 @@ object Network {
         })
         .connectTimeout(10.seconds.toJavaDuration()).build()
 
+    private val gson = GsonBuilder()
+        .registerTypeAdapter(Incident::class.java, IncidentDeserializer())
+        .create()
+
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttpClient)
         .build()
 

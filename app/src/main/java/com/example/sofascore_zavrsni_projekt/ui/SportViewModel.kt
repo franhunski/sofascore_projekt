@@ -4,7 +4,6 @@ import android.app.Application
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -31,11 +30,12 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun fetchEventsForSportAndDate(slug: String, date: String) {
         viewModelScope.launch {
             _isLoading.value = true
-            var success: Boolean = false
+            var success = false
             val eventItems : MutableMap<EventItem, MutableList<EventItem>> = mutableMapOf()
             _eventInfo.value = when (val result = miniSofaRepository.getAllEventsForSportAndDate(slug, date)) {
                 is Result.Success -> {
@@ -89,11 +89,9 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
                             eventItemsList.addAll(events)
                         }
 
-                        Log.d("mapa", "mapa=${eventItemsList}")
 
                     } else {
                         eventItemsList.add(EventItem.HeaderNoEventsItem("There are no events today!"))
-                        Log.d("lista", "lista=${eventItemsList}")
                     }
                     eventItemsList
                 }
@@ -102,7 +100,6 @@ class SportViewModel(application: Application): AndroidViewModel(application) {
                     emptyList()
                 }
             }
-            Log.d("eventovi", "sports=${_eventInfo.value}")
             if (success) {
                 _isLoading.value = false
             }
